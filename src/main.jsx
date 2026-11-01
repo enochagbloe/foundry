@@ -14,7 +14,10 @@ function App() {
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       gsap.from('.hero-reveal', { y: 65, opacity: 0, duration: 1.15, stagger: .13, ease: 'power3.out' });
       gsap.utils.toArray('[data-reveal]').forEach(el => gsap.from(el, { y: 40, opacity: 0, duration: .9, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } }));
-      gsap.to('.glow', { x: 45, y: 35, duration: 9, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: 'sine.inOut' } })
+        .to('.glow', { xPercent: -7, yPercent: 5, scale: 1.3, duration: 12 })
+        .to('.glow', { xPercent: 6, yPercent: -5, scale: 1.25, duration: 15 })
+        .to('.glow', { xPercent: 3, yPercent: 4, scale: 1.35, duration: 12 });
     }, root);
     return () => mm.revert();
   }, []);
